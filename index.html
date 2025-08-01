@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>نور و طمأنينة</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Cairo', sans-serif;
+      background-image: url('https://source.unsplash.com/1600x900/?nature,calm');
+      background-size: cover;
+      background-position: center;
+      color: white;
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.6);
+      min-height: 100vh;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      padding: 20px;
+      max-width: 900px;
+      width: 100%;
+      color: black;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      margin-top: 40px;
+    }
+
+    h1 {
+      font-size: 40px;
+      margin: 20px 0;
+      text-align: center;
+      color: white;
+    }
+
+    .description {
+      font-size: 18px;
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 20px auto;
+      color: #eee;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    button, select {
+      padding: 10px 16px;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      background-color: #ffffffcc;
+      color: #000;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover, select:hover {
+      background-color: #ffffff;
+    }
+
+    #content {
+      white-space: pre-wrap;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 28px;
+      }
+
+      .description {
+        font-size: 16px;
+      }
+
+      button, select {
+        font-size: 14px;
+        padding: 8px 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <h1>نور و طمأنينة</h1>
+    <div class="description">
+      مرحبًا بك في موقع نور و طمأنينة، حيث تجد السكينة في الذكر والقراءة الهادفة.
+    </div>
+
+    <div class="buttons">
+      <button onclick="loadAzkar('الصباح')">أذكار الصباح</button>
+      <button onclick="loadAzkar('المساء')">أذكار المساء</button>
+      <button onclick="loadContent('خواطر')">الخواطر والاقتباسات</button>
+      <select onchange="loadQisas(this.value)">
+        <option value="">قصص الأنبياء</option>
+        <option value="يوسف">قصة يوسف</option>
+        <option value="موسى">قصة موسى</option>
+        <option value="إبراهيم">قصة إبراهيم</option>
+        <option value="نوح">قصة نوح</option>
+      </select>
+    </div>
+
+    <div class="container" id="content">
+      <!-- المحتوى سيظهر هنا -->
+    </div>
+  </div>
+
+  <script>
+    function loadAzkar(time) {
+      const azkar = {
+        'الصباح': `1. أَصْـبَحْنا وَأَصْـبَحَ المُـلكُ للهِ، وَالحَمدُ لله، لا إلهَ إلاّ اللهُ وَحدَهُ لا شريكَ له، له المُـلكُ ولهُ الحَمد، وهُوَ على كُلّ شيءٍ قَدير...
+
+2. اللّهـمَّ أَنْتَ رَبِّـي لا إلهَ إلاّ أَنْتَ، خَلَقْتَنـي وَأَنا عَبْـدُك، وَأَنا عَلـى عَهْـدِكَ وَوَعْـدِكَ ما اسْتَـطَعْـت...
+
+3. رضيتُ باللهِ ربًّا، وبالإسلامِ دينًا، وبمحمدٍ ﷺ نبيًّا. (ثلاث مرات)
+
+4. اللهم بك أصبحنا، وبك أمسينا، وبك نحيا، وبك نموت، وإليك النشور...
+
+(وغيرها من الأذكار المأثورة المعروفة صباحًا).`,
+        'المساء': `1. أَمْسَيْنا وَأَمْسَى المُـلكُ للهِ، وَالحَمدُ لله، لا إلهَ إلاّ اللهُ وَحدَهُ لا شريكَ له...
+
+2. اللّهـمَّ أَنْتَ رَبِّـي لا إلهَ إلاّ أَنْتَ... (كما في الصباح مع التوقيت المسائي)
+
+3. رضيتُ باللهِ ربًّا، وبالإسلامِ دينًا، وبمحمدٍ ﷺ نبيًّا. (ثلاث مرات)
+
+4. اللهم بك أمسينا، وبك أصبحنا، وبك نحيا، وبك نموت، وإليك المصير...
+
+(وغيرها من الأذكار المسائية المأثورة).`
+      };
+      document.getElementById('content').innerText = azkar[time] || '';
+    }
+
+    function loadContent(type) {
+      if (type === 'خواطر') {
+        document.getElementById('content').innerText =
+`كن كالغيث، أينما وقع نفع.
+الطمأنينة لا تأتيك من كثرة المال، بل من صدق الإيمان.
+لا تحزن إن تأخر رزقك، فالله أرحم بك من نفسك.
+كل تأخير فيه خير، وكل قدر فيه لطف من الله.`;
+      }
+    }
+
+    function loadQisas(name) {
+      const stories = {
+        'يوسف': `كان يوسف عليه السلام نبيًا وابن نبي (يعقوب). رأى في صغره رؤيا عظيمة... حسده إخوته فرموه في بئر، فباعوه، ثم سجن، وخرج بتأويل الرؤيا، وأصبح وزيرًا... وعفا عن إخوته.`,
+        'موسى': `ولد في زمن فرعون الظالم، تربى في قصره ثم هرب... أرسله الله إلى فرعون بمعجزات... شق البحر، نجا موسى وهلك فرعون. أنزل الله عليه التوراة.`,
+        'إبراهيم': `دعا قومه للتوحيد، كسر الأصنام، أرادوا حرقه فنجاه الله... ترك زوجته وابنه في مكة، أمره الله بذبح ابنه ففداه... بنى الكعبة.`,
+        'نوح': `أول رسول للبشر، دعا قومه 950 سنة... كفروا به، أمره الله ببناء السفينة، جاء الطوفان، نجا المؤمنون وهلك الكفار.`
+      };
+      document.getElementById('content').innerText = stories[name] || '';
+    }
+  </script>
+</body>
+</html>
